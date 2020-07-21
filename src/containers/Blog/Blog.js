@@ -26,7 +26,7 @@ componentDidMount (){
             post => {
                 return <Post 
                 key={post.id} 
-                title={post.title}/>
+                title={post.title}/> 
             }
         );
 
