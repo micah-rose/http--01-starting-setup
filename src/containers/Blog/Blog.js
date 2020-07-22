@@ -25,7 +25,9 @@ componentDidMount (){
             })
             this.setState({posts: updatedPosts})
             console.log(response);
-        });
+        }).catch(error => {
+            console.log(error);
+        })
 }
 
     postSelectedandler = (id) => {
