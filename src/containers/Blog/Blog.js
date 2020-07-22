@@ -9,7 +9,8 @@ import './Blog.css';
 class Blog extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        selectedPostId: null
     }
 
 componentDidMount (){
@@ -27,6 +28,10 @@ componentDidMount (){
         });
 }
 
+    postSelectedandler = (id) => {
+        this.setState({selectedPostId: id})
+    }
+
     render () {
 
         const posts = this.state.posts.map(
@@ -34,7 +39,8 @@ componentDidMount (){
                 return <Post 
                 key={post.id} 
                 title={post.title}
-                author={post.author}/> 
+                author={post.author}
+                clicked={() => this.postSelectedandler(post.id)}/> 
             }
         );
 
@@ -44,7 +50,7 @@ componentDidMount (){
                     {posts}
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost id={this.state.selectedPostId}/>
                 </section>
                 <section>
                     <NewPost />
