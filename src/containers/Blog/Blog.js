@@ -25,8 +25,9 @@ componentDidMount (){
             })
             this.setState({posts: updatedPosts})
             console.log(response);
-        }).catch(error => {
-            console.log(error);
+        })
+        .catch(error => {
+            this.setState({error: true})
         })
 }
 
@@ -36,15 +37,20 @@ componentDidMount (){
 
     render () {
 
-        const posts = this.state.posts.map(
-            post => {
-                return <Post 
-                key={post.id} 
-                title={post.title}
-                author={post.author}
-                clicked={() => this.postSelectedandler(post.id)}/> 
-            }
-        );
+        let posts = <p style={{textAlign: 'center', color: 'red'}}>Something went wrong!</p>
+
+        if(!this.state.error) {
+            posts = this.state.posts.map(
+                post => {
+                    return <Post 
+                    key={post.id} 
+                    title={post.title}
+                    author={post.author}
+                    clicked={() => this.postSelectedandler(post.id)}/> 
+                }
+            );
+        }
+
 
         return (
             <div>
